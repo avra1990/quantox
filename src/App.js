@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import AddValuesTable from './components/AddValues/AddValuesTable';
+import AddValuesTableHeader from './components/ValuesTableHeader/AddValuesTableHeader'
+import Header from './components/Header/Header';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+    state = {
+        data: [],
+        loading: false
+    }
+
+    addNewDataToState = (account) => {
+        this.setState({
+            data: [...this.state.data, account]
+        })
+    }
+
+    loader = () => {
+
+    }
+
+    componentDidMount() {
+
+        fetch('https://pro-api.coinmarketcap.com')
+            .then(response => response.json())
+            .then(data => this.setState({
+                data: data
+            }))
+    }
+
+    render() {
+        return (
+            <BrowserRouter>
+                <Header />
+                <Route exact path='/' data={this.state.data}>
+                    <AddValuesTableHeader />
+                </Route>
+                <Route path='/add_values'>
+                    <AddValuesTable addNewDataToState = {this.addNewDataToState}/>
+                </Route>
+
+            </BrowserRouter>
+        )
+    }
 }
 
 export default App;
