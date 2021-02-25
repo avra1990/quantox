@@ -1,6 +1,7 @@
 {
   "name": "quantox",
   "version": "0.1.0",
+  "proxy": "https://pro-api.coinmarketcap.com/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",

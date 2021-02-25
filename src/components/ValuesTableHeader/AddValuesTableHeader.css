@@ -1,0 +1,7 @@
+#tableRow:nth-child(even) {
+    background-color: gray;
+}
+
+#tableRow:nth-child(odd) {
+    background-color: white;
+}

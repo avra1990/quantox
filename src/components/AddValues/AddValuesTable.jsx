@@ -22,9 +22,10 @@ class AddValuesTable extends Component {
        })
     }
 
-    addNewData = () => {
+    addNewData = ({props}) => {
         this.props.addNewDataToState(this.state.newData)
         this.props.history.push('/')
+        console.log(this.state.newData);
     }
     render() {
         return (
