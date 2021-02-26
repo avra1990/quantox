@@ -18,6 +18,8 @@ class App extends Component {
         this.setState({
             data: [...this.state.data, account],
             loading: false
+        }, () => {
+            console.log(this.state.data);
         })
     }
 /*
@@ -33,9 +35,7 @@ class App extends Component {
         
     
 */
-    loader = () => {
-
-    }
+    
 
     componentDidMount() {
      
@@ -62,11 +62,8 @@ class App extends Component {
                     <AddValuesTableHeader  data={this.state.data}/>
                 </Route>
                 <Route path='/add_values'>
-                    <AddValuesTable addNewDataToState={this.addNewDataToState} />
+                    <AddValuesTable data={this.state.data} addNewDataToState={this.addNewDataToState} />
                 </Route>
-            
-              
-
             </BrowserRouter>
         )
     }

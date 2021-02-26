@@ -1,36 +1,22 @@
 import React from 'react';
+import {useState} from 'react';
 import './AddValuesTableHeader.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import RowTable from './RowTable';
 
 
 const TableHeader = ({ data }) => {
-
-    const getBackground = (percent) => {
-        return percent > 0 ? 'green' : 'red'
-    }
-
-    const handleChange = (event) => {
-        const {id, value} = event.target
-        this.setState({
-            [id] : value
-        })
-    }
     
-    const allDatas = data.map(data => {
-        console.log(data);
+
+    
+    const allDatas = data.map((rowData, index) => {
+        
         return (
-            <tr id='tableRow' key={data.id}>
-                <td >{data.name}</td>
-                <td>{data.symbol}</td>
-                <td>{data.quote.USD.price}</td>
-                <td style={{backgroundColor: getBackground(data.quote.USD.percent_change_24h)}}>{data.quote.USD.percent_change_24h}</td>
-               <td><input placeholder='amount' id='myAmount'/><br />
-               <button onClick={this.handleChange}>Submit</button></td>
-               <td></td>
-            </tr>
+            <RowTable key={index} rowData = {rowData}/>
         )
     })
 
+    
     return (
         <div className="container">
             <div id='headerTableView' className="row">
